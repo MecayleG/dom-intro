@@ -10,6 +10,7 @@
 
 // create a variables that will keep track of all three totals.
 
+
 //add an event listener for when the 'Update settings' button is pressed
 
 //add an event listener for when the add button is pressed
@@ -20,3 +21,5 @@
 // * add nothing for invalid values that is not 'call' or 'sms'.
 // * display the latest total on the screen.
 // * check the value thresholds and display the total value in the right color.
+
+
