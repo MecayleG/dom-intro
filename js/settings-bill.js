@@ -45,6 +45,7 @@ var smsCostNew = 0;
 var warningLevelNew = 0;
 var criticalLevelNew = 0;
 
+
 function firstAdd(billItemTypeTwo){
 	
 	if(billItemTypeTwo === 'call'){
@@ -55,7 +56,7 @@ function firstAdd(billItemTypeTwo){
 		totalForSms += smsCostNew;
 		allTotals += smsCostNew;
 	}
-	
+
 	var forDecimals = allTotals.toFixed(2);
 	
 	return forDecimals;
@@ -72,6 +73,7 @@ function firstAdd(billItemTypeTwo){
     	radioTotalSettings.classList.add("warning");
     } else if (colorTotals > criticalLevelNew) {
 		radioTotalSettings.classList.add("danger");
+		document.getElementByClassName("settingsAdd").disabled = true;
     }
  }
 
@@ -89,9 +91,6 @@ function callingAll(){
 	var radioItemType = checkedRadioBtnTwo.value;
 	firstAdd(radioItemType);
 	forColor(allTotals);
-	// alert(allTotals);
-	// alert(totalForCalls);
-	// alert(totalForSms);
 	radioTotalSettings.innerHTML = allTotals.toFixed(2);
 	radioCallTotalSettings.innerHTML = totalForCalls.toFixed(2);
 	radioSmsTotalSettings.innerHTML = totalForSms.toFixed(2);

@@ -18,6 +18,7 @@ const totalCostElem = document.querySelector(".totalOne");
 
 function textBillTotal(){
     var billTypeEntered = billTypeText.value.trim();
+    
     if (billTypeEntered === "call"){
         callsTotal += 2.75
     }
