@@ -49,15 +49,21 @@ var criticalLevelNew = 0;
 function firstAdd(billItemTypeTwo){
 	
 	if(billItemTypeTwo === 'call'){
+		if(allTotals < criticalLevelNew){
 		totalForCalls += callCostNew;
-		allTotals += callCostNew;
+	
 	}
-	else if (billItemTypeTwo === 'sms'){
-		totalForSms += smsCostNew;
-		allTotals += smsCostNew;
 	}
 
-	var forDecimals = allTotals.toFixed(2);
+	else if (billItemTypeTwo === 'sms'){
+		if(allTotals < criticalLevelNew){
+		totalForSms += smsCostNew;
+	
+	}	
+
+	}
+
+	var forDecimals = totalForSms + totalForCalls;
 	
 	return forDecimals;
 	}
@@ -65,33 +71,38 @@ function firstAdd(billItemTypeTwo){
 
  function forColor(allTotalsTwo){
  	const colorTotals = Number(allTotalsTwo);
+ 		radioTotalSettings.classList.remove("danger");
+    	radioTotalSettings.classList.remove("warning");
 
-    radioTotalSettings.classList.remove("danger");
-    radioTotalSettings.classList.remove("warning");
-
-    if(colorTotals >= warningLevelNew  && colorTotals < criticalLevelNew){
+	if(colorTotals >= warningLevelNew  && colorTotals < criticalLevelNew){
     	radioTotalSettings.classList.add("warning");
-    } else if (colorTotals > criticalLevelNew) {
+    } else if (colorTotals >= criticalLevelNew) {
 		radioTotalSettings.classList.add("danger");
-		document.getElementByClassName("settingsAdd").disabled = true;
+		allTotals = criticalLevelNew
+    }
+    else if(colorTotals < warningLevelNew && colorTotals < criticalLevelNew){
+    	radioTotalSettings.classList.remove("danger");
+    	radioTotalSettings.classList.remove("warning");
     }
  }
 
  function settingsTotal(){
- 	totalForCalls = 0;
- 	totalForSms = 0;
- 	allTotals = 0;
   callCostNew = Number(callCost.value);
   smsCostNew = Number(smsCost.value);
   warningLevelNew = Number(warningLevel.value);
   criticalLevelNew = Number(criticalLevel.value);
+  forColor(allTotals);
  }
 function callingAll(){
+	// alert('UPDATED')
+	// alert(totalForCalls)
+	// alert(totalForSms)
+	// alert(allTotals)
 	var checkedRadioBtnTwo = document.querySelector("input[name='billItemTypeWithSettings']:checked");
 	var radioItemType = checkedRadioBtnTwo.value;
-	firstAdd(radioItemType);
-	forColor(allTotals);
-	radioTotalSettings.innerHTML = allTotals.toFixed(2);
+	var whateverName = firstAdd(radioItemType);
+	forColor(whateverName);
+	radioTotalSettings.innerHTML = whateverName.toFixed(2);
 	radioCallTotalSettings.innerHTML = totalForCalls.toFixed(2);
 	radioSmsTotalSettings.innerHTML = totalForSms.toFixed(2);
 }
