@@ -7,18 +7,32 @@ function TextBill(){
 	var totalCalls = 0;
 	var totalSms = 0;
 
-	function aCall(costForCall){
-		callIs = costForCall;
+	function totalTextBill(billsType){
+		var items = billsType.split(",");
+
+		for(var i=0;i<items.length;i++){
+			var allItems = items[i].trim();
+			if(allItems === "call"){
+				billText.wordCall();
+			}
+			else if(allItems === "sms"){
+				billText.wordSms();
+			}
+		}
 	}
-	function getACall(){
-		return callIs;
-	}
-	function aSms(costForSms){
-		smsIs = costForSms;
-	}
-	function getASms(){
-		return smsIs;
-	}
+
+	// function aCall(costForCall){
+	// 	callIs = costForCall;
+	// }
+	// function getACall(){
+	// 	return callIs;
+	// }
+	// function aSms(costForSms){
+	// 	smsIs = costForSms;
+	// }
+	// function getASms(){
+	// 	return smsIs;
+	// }
 	function limitOne(orange30){
 		exceedLimitOne = orange30;
 	}
@@ -34,32 +48,38 @@ function TextBill(){
 	function wordCall(){
 		totalCalls += callIs;
 	}
-	function overallTotal(){
-		return totalCalls + totalSms;
-	}
+
 	function getTotalForCalls(){
 		return totalCalls;
-	}
-	function getTotalForSms(){
-		return totalSms;
 	}
 	function wordSms(){
 		totalSms += smsIs;
 	}
-	function totalColor(){
-		if(overallTotal() >= getLimitTwo()){
-			return "red"
+	function getTotalForSms(){
+		return totalSms;
+	}
+	function overallTotal(){
+		return (totalCalls + totalSms).toFixed(2);
+	}
+	function firstColors(){
+		if(overallTotal()>getLimitTwo()){
+			return "red";
 		}
-		if(overallTotal() >= getLimitOne()){
-			return "orange"
+		else if(overallTotal()>getLimitOne()){
+			return "orange";
+		}
+	}
+	function totalColor(){
+		if(billText.overallTotal() >= 50){
+			return "danger";
+		}
+		else if(billText.overallTotal() > 30){
+			return "warning";
 		}
 	}
 	
 	return{
-		aCall,
-		aSms,
-		getACall,
-		getASms,
+		totalTextBill,
 		limitOne,
 		getLimitOne,
 		limitTwo,
@@ -69,6 +89,7 @@ function TextBill(){
 		wordSms,
 		getTotalForCalls,
 		getTotalForSms,
+		firstColors,
 		totalColor
 		}
 }

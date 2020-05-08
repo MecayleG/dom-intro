@@ -7,6 +7,15 @@ function ButtonBill(){
 	var allCallTotal = 0;
 	var allSmsTotal = 0;
 
+	function theButtonBill(buttonType){
+		if(buttonType === "call"){
+			buttonBill.callButton();
+		}
+		else if(buttonType === "sms"){
+			buttonBill.smsButton();
+		}
+	}
+
 	function forACall(){
 		return aCallCosts;
 	}
@@ -32,7 +41,7 @@ function ButtonBill(){
 		return allSmsTotal;
 	}
 	function totalForAll(){
-		return allCallTotal + allSmsTotal;
+		return (allCallTotal + allSmsTotal).toFixed(2);
 	}
 	function colorChange(){
 		if(totalForAll() >= theRedLevel()){
@@ -42,7 +51,16 @@ function ButtonBill(){
 			return"orange"
 		}
 	}
+	function theColorChange(){
+		if(buttonBill.totalForAll() >= 50){
+			return "danger"
+		}
+		else if(buttonBill.totalForAll() >= 30){
+			return "warning"
+		}
+	}
 	return {
+		theButtonBill,
 		forACall,
 		forASms,
 		theOrangeLevel,
@@ -52,6 +70,7 @@ function ButtonBill(){
 		smsButton,
 		getSmsButton,
 		totalForAll,
-		colorChange
+		colorChange,
+		theColorChange
 	}
 }

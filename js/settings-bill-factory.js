@@ -7,7 +7,14 @@ function BillWithSettings() {
 	 var callCostTotal = 0;
 	 var smsCostTotal = 0;
 
-
+	 function forSettingsBill(billType){
+	 	if(billType === "call"){
+	 		billSettings.makeCall();
+	 	}
+	 	else if(billType === "sms"){
+	 		billSettings.sendSms();
+	 	}
+	 }
 	function setCallCost(callCost) {
 		theCallCost = callCost;
 	}
@@ -40,13 +47,13 @@ function BillWithSettings() {
 		}
 	}
 	function getTotalCost(){
-		return callCostTotal + smsCostTotal;
+		return (callCostTotal + smsCostTotal).toFixed(2);
 	}
 	function getTotalCallCost(){
-		return callCostTotal;
+		return callCostTotal.toFixed(2);
 	}
 	function getTotalSmsCost(){
-		return smsCostTotal;
+		return smsCostTotal.toFixed(2);
 	}
 	function sendSms(){
 		if(!hasReachedCriticalLevel()){
@@ -69,6 +76,7 @@ function BillWithSettings() {
 	}
 
 	return {
+		forSettingsBill,
 		setCallCost,
 		getCallCost,
 		setSmsCost,

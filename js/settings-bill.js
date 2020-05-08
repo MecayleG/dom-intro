@@ -22,7 +22,7 @@
 // * display the latest total on the screen.
 // * check the value thresholds and display the total value in the right color.
 
-
+const billSettings = BillWithSettings();
 const callCost = document.querySelector(".callCostSetting");
 const smsCost = document.querySelector(".smsCostSetting");
 const warningLevel = document.querySelector(".warningLevelSetting ");
@@ -37,74 +37,29 @@ const radioCallTotalSettings = document.querySelector(".callTotalSettings");
 const radioSmsTotalSettings = document.querySelector(".smsTotalSettings");
 const radioTotalSettings = document.querySelector(".totalSettings");
 
-var totalForCalls = 0;
-var totalForSms = 0;
-var allTotals = 0;
-var callCostNew = 0;
-var smsCostNew = 0;
-var warningLevelNew = 0;
-var criticalLevelNew = 0;
 
-
-function firstAdd(billItemTypeTwo){
-	
-	if(billItemTypeTwo === 'call'){
-		if(allTotals < criticalLevelNew){
-		totalForCalls += callCostNew;
-	
-	}
-	}
-
-	else if (billItemTypeTwo === 'sms'){
-		if(allTotals < criticalLevelNew){
-		totalForSms += smsCostNew;
-	
-	}	
-
-	}
-
-	var forDecimals = totalForSms + totalForCalls;
-	
-	return forDecimals;
-	}
-
-
- function forColor(allTotalsTwo){
+ function forColor(){
  	const colorTotals = Number(allTotalsTwo);
  		radioTotalSettings.classList.remove("danger");
     	radioTotalSettings.classList.remove("warning");
-
-	if(colorTotals >= warningLevelNew  && colorTotals < criticalLevelNew){
-    	radioTotalSettings.classList.add("warning");
-    } else if (colorTotals >= criticalLevelNew) {
-		radioTotalSettings.classList.add("danger");
-		allTotals = criticalLevelNew
-    }
-    else if(colorTotals < warningLevelNew && colorTotals < criticalLevelNew){
-    	radioTotalSettings.classList.remove("danger");
-    	radioTotalSettings.classList.remove("warning");
-    }
+    	radioTotalSettings.classList.add(billSettings.)
  }
 
  function settingsTotal(){
-  callCostNew = Number(callCost.value);
-  smsCostNew = Number(smsCost.value);
-  warningLevelNew = Number(warningLevel.value);
-  criticalLevelNew = Number(criticalLevel.value);
+  billSettings.setCallCost(callCost.value);
+  billSettings.setSmsCost(smsCost.value);
+  billSettings.setWarningLevel(warningLevel.value);
+  billSettings.setCriticalLevel(criticalLevel.value);
   forColor(allTotals);
  }
 function callingAll(){
-	// alert('UPDATED')
-	// alert(totalForCalls)
-	// alert(totalForSms)
-	// alert(allTotals)
+
 	var checkedRadioBtnTwo = document.querySelector("input[name='billItemTypeWithSettings']:checked");
 	var radioItemType = checkedRadioBtnTwo.value;
-	var whateverName = firstAdd(radioItemType);
-	forColor(whateverName);
-	radioTotalSettings.innerHTML = whateverName.toFixed(2);
-	radioCallTotalSettings.innerHTML = totalForCalls.toFixed(2);
-	radioSmsTotalSettings.innerHTML = totalForSms.toFixed(2);
+	var billSettings = forSettingsBill.(radioItemType);
+	radioTotalSettings.innerHTML = billSettings.getCallcost();
+	radioCallTotalSettings.innerHTML = totalForCalls.getSmsCost();
+	radioSmsTotalSettings.innerHTML = totalForSms.getTotalCost();
 }
 updateSettingsBtn.addEventListener('click', settingsTotal);
 settingsAddBtn.addEventListener('click', callingAll);
