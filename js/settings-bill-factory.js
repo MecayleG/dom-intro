@@ -74,6 +74,15 @@ function BillWithSettings() {
 			return "warning"
 		}
 	}
+	function theColors(){
+		if(billSettings.getTotalCost() >= billSettings.getCriticalLevel()){
+			return "danger";
+		}
+		else if(billSettings.getTotalCost() >= billSettings.getWarningLevel()){
+			return "warning";
+		}
+	}
+
 
 	return {
 		forSettingsBill,
@@ -90,6 +99,7 @@ function BillWithSettings() {
 		getTotalCallCost,
 		getTotalSmsCost,
 		sendSms,
-		totalClassName
+		totalClassName,
+		theColors
 	}
 }

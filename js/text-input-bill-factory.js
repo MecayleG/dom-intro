@@ -73,7 +73,7 @@ function TextBill(){
 		if(billText.overallTotal() >= 50){
 			return "danger";
 		}
-		else if(billText.overallTotal() > 30){
+		else if(billText.overallTotal() >= 30){
 			return "warning";
 		}
 	}

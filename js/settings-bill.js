@@ -39,10 +39,9 @@ const radioTotalSettings = document.querySelector(".totalSettings");
 
 
  function forColor(){
- 	const colorTotals = Number(allTotalsTwo);
  		radioTotalSettings.classList.remove("danger");
     	radioTotalSettings.classList.remove("warning");
-    	radioTotalSettings.classList.add(billSettings.)
+    	radioTotalSettings.classList.add(billSettings.theColors())
  }
 
  function settingsTotal(){
@@ -50,16 +49,17 @@ const radioTotalSettings = document.querySelector(".totalSettings");
   billSettings.setSmsCost(smsCost.value);
   billSettings.setWarningLevel(warningLevel.value);
   billSettings.setCriticalLevel(criticalLevel.value);
-  forColor(allTotals);
+  forColor();
  }
 function callingAll(){
 
 	var checkedRadioBtnTwo = document.querySelector("input[name='billItemTypeWithSettings']:checked");
 	var radioItemType = checkedRadioBtnTwo.value;
 	var billSettings = forSettingsBill.(radioItemType);
-	radioTotalSettings.innerHTML = billSettings.getCallcost();
-	radioCallTotalSettings.innerHTML = totalForCalls.getSmsCost();
-	radioSmsTotalSettings.innerHTML = totalForSms.getTotalCost();
+	radioTotalSettings.innerHTML = billSettings.getTotalcost();
+	radioCallTotalSettings.innerHTML = totalForCalls.getCallCost();
+	radioSmsTotalSettings.innerHTML = totalForSms.getSmsCost();
+	forColor();
 }
 updateSettingsBtn.addEventListener('click', settingsTotal);
 settingsAddBtn.addEventListener('click', callingAll);
