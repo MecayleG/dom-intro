@@ -55,10 +55,10 @@ function callingAll(){
 
 	var checkedRadioBtnTwo = document.querySelector("input[name='billItemTypeWithSettings']:checked");
 	var radioItemType = checkedRadioBtnTwo.value;
-	var billSettings = forSettingsBill.(radioItemType);
-	radioTotalSettings.innerHTML = billSettings.getTotalcost();
-	radioCallTotalSettings.innerHTML = totalForCalls.getCallCost();
-	radioSmsTotalSettings.innerHTML = totalForSms.getSmsCost();
+	billSettings.forSettingsBill(radioItemType);
+	radioTotalSettings.innerHTML = billSettings.getTotalCost();
+	radioCallTotalSettings.innerHTML = billSettings.getCallCost();
+	radioSmsTotalSettings.innerHTML = billSettings.getSmsCost();
 	forColor();
 }
 updateSettingsBtn.addEventListener('click', settingsTotal);

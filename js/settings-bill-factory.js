@@ -16,27 +16,27 @@ function BillWithSettings() {
 	 	}
 	 }
 	function setCallCost(callCost) {
-		theCallCost = callCost;
+		theCallCost = Number(callCost);
 	}
 
 	function getCallCost(){
 		return theCallCost;
 	}
 	function setSmsCost(smsCost) {
-		theSmsCost = smsCost;
+		theSmsCost = Number(smsCost);
 	}
 
 	function getSmsCost(){
 		return theSmsCost;
 	}
 	function setWarningLevel(warningLevel){
-		theWarningLevel = warningLevel;
+		theWarningLevel = Number(warningLevel);
 	}
 	function getWarningLevel(){
 		return theWarningLevel;
 	}
 	function setCriticalLevel(criticalLevel){
-		theCriticalLevel = criticalLevel;
+		theCriticalLevel = Number(criticalLevel);
 	}
 	function getCriticalLevel(){
 		return theCriticalLevel;
